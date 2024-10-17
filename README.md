@@ -10,4 +10,4 @@ Michael Buckendahl,
 Isaac Miller,
 Thaddeou Flournoy,
 Ryan Graham,
-Sermon Kim,
+Sermon Kim
