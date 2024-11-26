@@ -29,7 +29,7 @@ class Stack {
 			Returns the top-most value on the stack, without altering its contents.
 			This funciton will throw an exception if the stack is empty.
 		*/
-		T Peek() {
+		T Peek() const {
 			if (IsEmpty()) {
 				throw "Cannot peek from empty stack!";
 			}
@@ -48,8 +48,14 @@ class Stack {
 		/*
 			Returns whether the stack is empty.
 		*/
-		bool IsEmpty() {
+		bool IsEmpty() const {
 			return _size == 0;
+		}
+		/*
+			Returns the size of the stack.
+		*/
+		unsigned int Size() const {
+			return _size;
 		}
 
 		/*
