@@ -4,7 +4,7 @@ CFLAGs = -c -Wall -g
 
 STACK = stack
 
-all: main.o stack.o
+all: main.o evaluator.o stack.o
 	$(CC) -o $(APPLICATION_NAME) main.o $(STACK).o -g
 
 main.o: main.cpp
