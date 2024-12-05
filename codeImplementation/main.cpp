@@ -1,1 +1,5 @@
 //Main
+
+int main() {
+
+}
