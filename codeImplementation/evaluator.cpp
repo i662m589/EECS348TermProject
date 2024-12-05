@@ -1,34 +1,71 @@
 //Evaluator
 #include <iostream>
+//#include <iomanip>
 #include <string>
 #include <stack.cpp>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
-double conv_str_doub(const string &x) {
-    switch(x) {
-        case "0": return 0;
-        case "1": return 1;
-        case "2": return 2;
-        case "3": return 3;
-        case "4": return 4;
-        case "5": return 5;
-        case "6": return 6;
-        case "7": return 7;
-        case "8": return 8;
-        case "9": return 9;
-        default: return 111;
+double conv_float(const string& str) {
+    
+    double result;
+    const char *curr_number = str.c_str();
+    const char *dec_point_loc = str.c_str();
+    const char *first_int = str.c_str();
+    int loop_num = 0;
+    int converted_num;
+    
+    if (str[0] == '-' || str[0] == '+') {
+        first_int++;
     }
-// This function will read a character and return that digit if that character is a digit. Otherwise, it will return 111 as an error state.
-};
+    
+    while (*dec_point_loc != '\0') {
+        if (*dec_point_loc == '.') {
+            break;
+        } else {
+            dec_point_loc++;
+        }
+    }
+    curr_number = dec_point_loc;
+    
+    while (curr_number != first_int) {
+        curr_number--;
+        if (*curr_number >= '0' && *curr_number <= '9'){
+            converted_num = *curr_number - '0';
+            result += converted_num * pow(10, loop_num);
+            loop_num++;
+        } else {
+            return -999999.99;
+        }    
+    }
+    curr_number = dec_point_loc;
+    curr_number++;
+    loop_num = 1;
+    
+    while (*curr_number != '\0'){
+        if (*curr_number >= '0' && *curr_number <= '9'){
+            converted_num = *curr_number - '0';
+            result += converted_num / pow(10, loop_num);
+            loop_num++;
+            curr_number++;
+        } else {
+            return -999999.99;
+        }
+    }
+    if (str[0] == '-') {
+        return result * -1;
+    }
+    return result;
+}
 
 double evaluator(vector<string> &vect) {
     Stack<double> stack;
 
     for (int i = 0; i < vect.size(); i++) {
-        if (conv_str_doub(vect[i]) != 111) {
-            stack.Add(conv_str_doub(vect[i]));
+        if (conv_float(vect[i]) != -999999.99) {
+            stack.Add(conv_float(vect[i]));
         } else if(vect[i] == "**") {
             double num = stack.Pop();
             double num2 = stack.Pop();
@@ -45,23 +82,22 @@ double evaluator(vector<string> &vect) {
             double num1 = stack.Pop();
             double num2 = stack.Pop();
 
-            switch (vect[i]) {
-                case "+":
-                    stack.Add(num1 + num2);
-                    break;
-                case "-":
+            if (vect[i] == "+") {
+                stack.Add(num1 + num2);
+                break;
+            } else if (vect[i] == "-") {
+                stack.Add(num1 - num2);
+                break;
+            } else if (vect[i] == "*") {
+                stack.Add(num1 * num2);
+                break;
+            } else if (vect[i] == "/") {
+                if (num2 == 0) {
+                    throw "Cannot divide by zero!";
+                } else {
                     stack.Add(num1 - num2);
-                    break;
-                case "*":
-                    stack.Add(num1 * num2);
-                    break;
-                case "/":
-                    if (num2 == 0) {
-                        throw "Cannot divide by zero!";
-                    } else {
-                        stack.Add(num1 / num2);
-                    }
-                    break;
+                }
+                break;
             }
         }
     }
