@@ -6,6 +6,7 @@ STACK = stack
 
 all: main.o evaluator.o stack.o lexer.o
 	$(CC) -o $(APPLICATION_NAME) main.o $(STACK).o evaluator.o lexer.o -g
+	make clean
 
 evaluator.o: evaluator.cpp
 	$(CC) $(CFLAGs) evaluator.cpp
