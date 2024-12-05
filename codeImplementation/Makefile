@@ -4,11 +4,21 @@ CFLAGs = -c -Wall -g
 
 STACK = stack
 
-all: main.o evaluator.o stack.o
-	$(CC) -o $(APPLICATION_NAME) main.o $(STACK).o -g
+all: main.o evaluator.o stack.o lexer.o
+	$(CC) -o $(APPLICATION_NAME) main.o $(STACK).o evaluator.o lexer.o -g
+	make clean
+
+evaluator.o: evaluator.cpp
+	$(CC) $(CFLAGs) evaluator.cpp
+
+lexer.o: lexer.cpp
+	$(CC) $(CFLAGs) lexer.cpp
 
 main.o: main.cpp
 	$(CC) $(CFLAGs) main.cpp
+
+parser.o: parser.cpp
+	$(CC) $(CFLAGs) parser.cpp
 
 $(STACK).o: $(STACK).cpp
 	$(CC) $(CFLAGs) $(STACK).cpp
