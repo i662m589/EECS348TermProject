@@ -31,7 +31,11 @@ double evaluator(vector<string> &vect) {
             stack.Add(conv_str_doub(vect[i]));
         } else if(vect[i] == "**") {
             double num = stack.Pop();
-            stack.Add(num * num);
+            double num2 = stack.Pop();
+            for (num2; num2 > 0; num2--) {
+                num *= num;
+            }
+            stack.Add(num);
         } 
         else if(vect[i] == "%") {
             int num1 = stack.Pop();
