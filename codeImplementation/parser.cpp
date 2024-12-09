@@ -24,7 +24,7 @@ vector<string> parse(string s) {
 
     // To create this postfix expression we need to loop through the valid string that was given
     // as a parameter and handle adding the operators and operands in correct order.
-    for (int i = 0; i < s.length(); i++) {
+    for (int i = 0; i < (int)s.length(); i++) {
         char c = s[i];
         
         // If the scanned character is an operand, add it to the string.
@@ -42,7 +42,7 @@ vector<string> parse(string s) {
             // cause a memory error. It also checks if the next current character is a space 
             // because the format of the string should be one space between all operators and
             // operands.
-            while (i < s.size() && s[i] != ' ') {
+            while (i < (int)s.size() && s[i] != ' ') {
                 current_num += s[i];
                 i++;
             }
