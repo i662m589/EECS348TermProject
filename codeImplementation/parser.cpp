@@ -1,7 +1,6 @@
-//Parser
 #include <iostream> 
 #include <string>   
-#include "stack.cpp"  
+#include "stack.cpp" 
 #include <vector>
 using namespace std;
 
@@ -60,8 +59,20 @@ vector<string> parse(string s) {
             // than a char.
             st.Add("(");
         }
-        // This else if handles the scenario
+        // This else if handles the scenario if the parsed char is a operator.
         else if (c == '*' || c == '/' || c == '%' || c == '+' || c == '-') {
+            
+            // Since the calculator has to handle unary operators we need to handle a special case for that.
+            // According to our syntax for expressions in our calculator a unary operator is either a "+" or "-"
+            // that is directly connect to the number, that is no space between them.
+            if ((c == '+' || c == '-') && s[i + 1] >= '0' && s[i + 1] <= '9') {
+                string current_num = string();
+                while (i < s.size() && s[i] != ' ') {
+                    current_num += s[i];
+                    i++;
+                }
+                result.push_back(current_num);
+            }
 
             // Initialize curr_op
             string curr_op;
@@ -80,7 +91,7 @@ vector<string> parse(string s) {
             }
             
             // if the stack is empty then just add the parsed op to the stack.
-            if (st.IsEmpty()) {
+            if (st.empty()) {
                 st.Add(curr_op);
                 continue; // This continue is here so that we dont add operators twice.
             }

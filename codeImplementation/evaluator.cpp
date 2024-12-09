@@ -67,7 +67,7 @@ double conv_float(const string& str) {
 }
 
 double evaluator(vector<string> &vect) {
-    Stack<double> stack;
+        Stack<double> stack;
 //The stack object will be used to evaluate the expression in postorder
     for (int i = 0; i < vect.size(); i++) {
 //This for-loop goes through each value of the vector/list from parser
@@ -108,5 +108,6 @@ double evaluator(vector<string> &vect) {
             }
         }
     return stack.Pop(); 
+    }
 //After the for-loop is finished, the last value in the stack is returned to main.
 }
