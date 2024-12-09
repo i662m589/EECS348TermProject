@@ -7,7 +7,7 @@
 using namespace std;
 
 //Function declaration for the parser
-extern vector<string> parse(const string& expression);
+extern vector<string> parse(string expression);
 
 //Function to validate the arithmetic expression
 bool validateExpression(const string& expression) {
