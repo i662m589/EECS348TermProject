@@ -19,7 +19,7 @@ vector<string> parse(string s) {
     
     // Initialize both the stack what will help with precedence and the
     // result, which is the postfix expression we are trying to build.
-    Stack<string> st;
+    Stack<string> st = Stack<string>();
     vector<string> result;
 
     // To create this postfix expression we need to loop through the valid string that was given
@@ -93,8 +93,11 @@ vector<string> parse(string s) {
             // If the precedence of the top of the stack is greater than or equal we need to pop off every operator on the 
             // stack till the precedence of the operator is greater. 
             while (prec_of_top >= prec_of_op && !st.IsEmpty()) {
-                result.push_back(st.Peek()); // This uses top because top returns the top value of the stack.
-                st.Peek(); // Then since top doesnt remove it we need to remove said value with pop.
+
+                // Note by Ryan: It appears as if this is meant to pop from the stack as a means of terminating the loop.
+
+                result.push_back(st.Pop()); // This uses top because top returns the top value of the stack.
+                // Then since top doesnt remove it we need to remove said value with pop.
                 // This if makes sure the stack is not empty before we try to acceses the top of it so it doesnt cause a 
                 // segmentation fault. This error can occur because we pop the remaining item of the stack in the previous
                 // line and wouldnt have time for the while conidtion to check yet.
