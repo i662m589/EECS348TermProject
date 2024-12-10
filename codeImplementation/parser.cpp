@@ -41,11 +41,13 @@ vector<string> parse(string s) {
             // cause a memory error. It also checks if the next current character is a space 
             // because the format of the string should be one space between all operators and
             // operands.
-            while (i < (int)s.size() && s[i] >= '0' && s[i] <= '9' || s[i] == '.') {
+            while (i < (int)s.size() && ((s[i] >= '0' && s[i] <= '9') || s[i] == '.')) {
                 current_num += s[i];
                 i++;
             }
+            i--; //i is decremented to point to the last digit so that the next index is correct.
             // Then of course add this operand to the resulting postfix expression
+            cout << s[i] << endl;
             result.push_back(current_num);
         }
         // If the scanned character is a ' '(empty space), just continue past this iteration.
@@ -67,7 +69,7 @@ vector<string> parse(string s) {
             // that is directly connect to the number, that is no space between them.
             if ((c == '+' || c == '-') && s[i + 1] >= '0' && s[i + 1] <= '9') {
                 string current_num = string();
-                while (i < (int)s.size() && s[i] >= '0' && s[i] <= '9' || s[i] == '.') {
+                while (i < (int)s.size() && ((s[i] >= '0' && s[i] <= '9') || s[i] == '.')) {
                     current_num += s[i];
                     i++;
                 }
@@ -76,7 +78,7 @@ vector<string> parse(string s) {
             // Since the unary can be on the outside of a parentheses like , +( 4 ), we have to handle that case.
             // This is done by determining the sign, since there could be mulitpule signs in a nested parentheses
             // situation. This parse the number and then put that value in out postfix expression.
-            else if ((c == '+' || c == '-') && s[i + 1] >= '0' && s[i + 1] <= '9') {
+            else if ((c == '+' || c == '-') && s[i + 1] == '(') {
                 
                 // Since we are looking for an operand we will need a string to hold its value.
                 // We also need to determine the sign so we start by getting its current sign and iterate
@@ -112,7 +114,7 @@ vector<string> parse(string s) {
                 // Again since by the time this function has recived the string it has been lexed to check for validity,
                 // So here it is safe to assume the parentheses match.
                 current_num += sign;
-                while (i < (int)s.size() && s[i] >= '0' && s[i] <= '9' || s[i] == '.') {
+                while (i < (int)s.size() && ((s[i] >= '0' && s[i] <= '9') || s[i] == '.')) {
                     current_num += s[i];
                     i++;
                 }
