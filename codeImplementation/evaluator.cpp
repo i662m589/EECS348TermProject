@@ -76,8 +76,15 @@ double evaluator(vector<string> &vect) {
             stack.Add(extractNumber(vect[i]));
 //If the index of the list is a numeric value, it is added to stack
         } else {
-            double num2 = stack.Pop();
-            double num1 = stack.Pop();
+            double num2;
+            double num1;
+            try {
+                num2 = stack.Pop();
+                num1 = stack.Pop();
+            }
+            catch (const char* ch) {
+                throw "Invalid operator";
+            }
 //If the index of the list is any other operator, the top two value in the stack are popped and stored.
             if (vect[i] == "+") {
                 stack.Add(num1 + num2);
@@ -102,6 +109,8 @@ double evaluator(vector<string> &vect) {
             } else if (vect[i] == "%") {
                 stack.Add(fmod(num1, num2));
 //If the index of the list is the modulus operator, the first value is modulus'd by the second value and then added to the stack.
+            } else {
+                throw "Invalid Arithmetic Error!";
             }
         }
     }

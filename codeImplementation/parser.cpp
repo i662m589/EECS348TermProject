@@ -47,7 +47,6 @@ vector<string> parse(string s) {
             }
             i--; //i is decremented to point to the last digit so that the next index is correct.
             // Then of course add this operand to the resulting postfix expression
-            cout << s[i] << endl;
             result.push_back(current_num);
         }
         // If the scanned character is a ' '(empty space), just continue past this iteration.
