@@ -8,7 +8,7 @@ a meeting log that tracked meeting content and attendance.
 Contributors:
 Michael Buckendahl, 
 Isaac Miller,
-Thaddeous Flournoy,
+Thaddeus Flournoy,
 Ryan Graham,
 Serom Kim,
 Anthony Tran
