@@ -23,7 +23,7 @@ vector<string> parse(string s) {
 
     // To create this postfix expression we need to loop through the valid string that was given
     // as a parameter and handle adding the operators and operands in correct order.
-    for (int i = 0; i < s.length(); i++) {
+    for (int i = 0; i < (int)s.length(); i++) {
         char c = s[i];
         
         // If the scanned character is an operand, add it to the string.
@@ -41,7 +41,7 @@ vector<string> parse(string s) {
             // cause a memory error. It also checks if the next current character is a space 
             // because the format of the string should be one space between all operators and
             // operands.
-            while (i < s.size() && s[i] != ' ') {
+            while (i < (int)s.size() && s[i] != ' ') {
                 current_num += s[i];
                 i++;
             }
@@ -67,7 +67,7 @@ vector<string> parse(string s) {
             // that is directly connect to the number, that is no space between them.
             if ((c == '+' || c == '-') && s[i + 1] >= '0' && s[i + 1] <= '9') {
                 string current_num = string();
-                while (i < s.size() && s[i] != ' ') {
+                while (i < (int)s.size() && s[i] != ' ') {
                     current_num += s[i];
                     i++;
                 }
@@ -104,8 +104,8 @@ vector<string> parse(string s) {
             // If the precedence of the top of the stack is greater than or equal we need to pop off every operator on the 
             // stack till the precedence of the operator is greater. 
             while (prec_of_top >= prec_of_op && !st.IsEmpty()) {
-                result.push_back(st.Peek()); // This uses top because top returns the top value of the stack.
-                st.Peek(); // Then since top doesnt remove it we need to remove said value with pop.
+                result.push_back(st.Pop()); // This uses top because top returns the top value of the stack.
+                // Then since top doesnt remove it we need to remove said value with pop.
                 // This if makes sure the stack is not empty before we try to acceses the top of it so it doesnt cause a 
                 // segmentation fault. This error can occur because we pop the remaining item of the stack in the previous
                 // line and wouldnt have time for the while conidtion to check yet.

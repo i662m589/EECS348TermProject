@@ -3,10 +3,9 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
-#include "parser.cpp"
-#include "evaluator.cpp"
-#include "lexer.cpp"
-#include "stack.cpp"
+#include "parser.h"
+#include "evaluator.h"
+#include "lexer.h"
 
 using namespace std;
 
