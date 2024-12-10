@@ -10,6 +10,7 @@
 
 using namespace std;
 
+extern bool processExpression(const string& expression);
 extern vector<string> parse(string);
 extern double evaluator(vector<string>&);
 extern double conv_float(const string&);
@@ -29,26 +30,26 @@ int main() {
 			break;
 		}
 
-		if (validateExpression(input) == true) {
-				try {
+		try {
+			if (!processExpression(input)) {
+                // If expression is invalid, continue to next iteration
+				continue;
 			
-					// parse user's expression to postfix notation
-					vector<string> postfix = parse(input);
+			}
+			// parse user's expression to postfix notation
+			vector<string> postfix = parse(input);
 
-					// evaluate the postfix notation
-					double result = evaluator(postfix);
-					cout << "Result: " << result << endl;
-				}
-
-				// handle specific error messages from stack or evaluator
-				catch (const char* errorMsg) {
-					cerr << "Error: " << errorMsg << endl;
-				}
-
-				// handle any other standard exceptions
-				catch (const exception& e) {
-					cerr << "Unexpected error: " << e.what() << endl;
-				}
+			// evaluate the postfix notation
+			double result = evaluator(postfix);
+			cout << "Result: " << result << endl;
+		}
+		// handle specific error messages from stack or evaluator
+		catch (const char* errorMsg) {
+			cerr << "Error: " << errorMsg << endl;
+		}
+		// handle any other standard exceptions
+		catch (const exception& e) {
+			cerr << "Unexpected error: " << e.what() << endl;
 		}
 	}
 	return 0;
