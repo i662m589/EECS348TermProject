@@ -1,0 +1,2 @@
+Negative numbers do not work in the calculator right now.
+Putting two values with no operator (e.g. "10 2") should produce an error, but it does not.
