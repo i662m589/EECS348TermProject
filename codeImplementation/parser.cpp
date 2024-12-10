@@ -92,13 +92,13 @@ vector<string> parse(string s) {
                     // This catches the case that our current sign is negative and we ran into another
                     // negative so we need to flip the sign and keep going.
                     if (s[i] == '-' && sign == '-') {
-                        sign == '+'
+                        sign = '+';
                         i++;
                     }
                     // This covers the case that we ran into a negative and currently our sign is positive, in this
                     // case we need to flip our sign and continue/
                     else if (s[i] == '-' && sign == '+') {
-                        sign == '-'
+                        sign = '-';
                     }
                     // Since there are two other possible combonations of the current operator and sign 
                     // this else catches thoes cases. They can be caught and simply iterated past because
