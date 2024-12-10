@@ -87,7 +87,7 @@ vector<string> parse(string s) {
                 
                 // Then we need to loop through all possible nested parentheses and we can do this by basically just looping till we hit
                 // the number itself. This also helps handle the situation where there is an unary connected to the number itself.
-                while (i < s.size() && !(s[i] >= '0' && s[i] <= '9')) {
+                while (i < (int)s.size() && !(s[i] >= '0' && s[i] <= '9')) {
                     
                     // This catches the case that our current sign is negative and we ran into another
                     // negative so we need to flip the sign and keep going.
@@ -112,7 +112,7 @@ vector<string> parse(string s) {
                 // Again since by the time this function has recived the string it has been lexed to check for validity,
                 // So here it is safe to assume the parentheses match.
                 current_num += sign;
-                while (i < s.size() && s[i] != ')') {
+                while (i < (int)s.size() && s[i] != ')') {
                     current_num += s[i];
                     i++;
                 }
