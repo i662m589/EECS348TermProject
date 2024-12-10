@@ -70,7 +70,6 @@ double conv_float(const string& str) {
 
 double evaluator(vector<string> &vect) {
     Stack<double> stack = Stack<double>();
-    cout << stack.Size() << endl;
 //The stack object will be used to evaluate the expression in postorder
     for (int i = 0; i < (int)vect.size(); i++) {
         //This for-loop goes through each value of the vector/list from parser
