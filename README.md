@@ -10,4 +10,5 @@ Michael Buckendahl,
 Isaac Miller,
 Thaddeous Flournoy,
 Ryan Graham,
-Serom Kim
+Serom Kim,
+Anthony Tran
