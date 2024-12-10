@@ -2,9 +2,9 @@ APPLICATION_NAME = driver
 CC = g++
 CFLAGs = -c -Wall -g
 
-all: main.o evaluator.o stack.o lexer.o parser.o
-	$(CC) -o $(APPLICATION_NAME) main.o stack.o evaluator.o lexer.o parser.o -g
-	make clean
+all: main.o evaluator.o stack.o lexer.o parser.o strToNum.o
+	$(CC) -o $(APPLICATION_NAME) main.o stack.o evaluator.o lexer.o parser.o strToNum.o -g
+	#make clean
 
 evaluator.o: evaluator.cpp evaluator.h
 	$(CC) $(CFLAGs) evaluator.cpp evaluator.h
@@ -20,6 +20,9 @@ parser.o: parser.cpp parser.h
 
 stack.o: stack.cpp
 	$(CC) $(CFLAGs) stack.cpp
+
+strToNum.o: strToNum.h strToNum.cpp
+	$(CC) $(CFLAGs) strToNum.h strToNum.cpp
 
 clean:
 	rm -f *.o

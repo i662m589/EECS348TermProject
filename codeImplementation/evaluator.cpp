@@ -5,6 +5,7 @@
 #include "stack.cpp"
 #include <vector>
 #include <cmath>
+#include "strToNum.h"
 
 //These are the dependencies that will be utilized throughout the remainder of the evaluator
 using namespace std;
@@ -68,12 +69,13 @@ double conv_float(const string& str) {
 }
 
 double evaluator(vector<string> &vect) {
-    Stack<double> stack;
+    Stack<double> stack = Stack<double>();
+    cout << stack.Size() << endl;
 //The stack object will be used to evaluate the expression in postorder
     for (int i = 0; i < (int)vect.size(); i++) {
         //This for-loop goes through each value of the vector/list from parser
-        if (conv_float(vect[i]) != -999999.99) {
-            stack.Add(conv_float(vect[i]));
+        if (extractNumber(vect[i]) != -999999.99) {
+            stack.Add(extractNumber(vect[i]));
             //If the index of the list is a numeric value, it is added to stack
         }
         else {
@@ -81,18 +83,22 @@ double evaluator(vector<string> &vect) {
             double num2 = stack.Pop();
             //If the index of the list is any other operator, the top two value in the stack are popped and stored.
             if (vect[i] == "+") {
+                cout << num1 << " + " << num2 << endl;
                 stack.Add(num1 + num2);
                 //If the index of the list is an addition operator, the two values are added together and added to the stack.
             }
             else if (vect[i] == "-") {
                 stack.Add(num1 - num2);
+                cout << num1 << " - " << num2 << endl;
                 //If the index of the list is a subtraction operator, the first value is subtracted by the second and added to the stack.
             }
             else if (vect[i] == "*") {
                 stack.Add(num1 * num2);
+                cout << num1 << " * " << num2 << endl;
                 //If the index of the list is a multiplication operator, the two values are multiplied together and added to the stack.
             }
             else if (vect[i] == "/") {
+                cout << num1 << " / " << num2 << endl;
                 if (num2 == 0) {
                     throw "Cannot divide by zero!";
                     //If the index of the list is a division operator and the second value is zero, the program throws a divide by zero error.
@@ -106,9 +112,11 @@ double evaluator(vector<string> &vect) {
                 double num1 = stack.Pop();
                 double num2 = stack.Pop();
                 stack.Add(pow(num1, num2));
+                cout << num1 << " ^ " << num2 << endl;
                 //If the index of the list is the exponentiation operator, the program then muliplies the first value by itself by a power of the second value and adds that to the stack.
             }
             else if (vect[i] == "%") {
+                cout << num1 << " % " << num2 << endl;
                 double num1 = stack.Pop();
                 double num2 = stack.Pop();
                 stack.Add(fmod(num1, num2));
