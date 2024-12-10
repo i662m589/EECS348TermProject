@@ -6,7 +6,6 @@
 #include "parser.h"
 #include "evaluator.h"
 #include "lexer.h"
-#include "stack.cpp"
 
 using namespace std;
 
