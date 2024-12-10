@@ -3,3 +3,4 @@
 /.vscode
 *.o
 /codeImplementation/TestCode
+*.gch
