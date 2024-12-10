@@ -9,14 +9,14 @@ all: main.o evaluator.o stack.o lexer.o parser.o
 evaluator.o: evaluator.cpp evaluator.h
 	$(CC) $(CFLAGs) evaluator.cpp evaluator.h
 
-lexer.o: lexer.cpp
-	$(CC) $(CFLAGs) lexer.cpp
+lexer.o: lexer.cpp lexer.h
+	$(CC) $(CFLAGs) lexer.cpp lexer.h
 
 main.o: main.cpp
 	$(CC) $(CFLAGs) main.cpp
 
-parser.o: parser.cpp
-	$(CC) $(CFLAGs) parser.cpp
+parser.o: parser.cpp parser.h
+	$(CC) $(CFLAGs) parser.cpp parser.h
 
 stack.o: stack.cpp
 	$(CC) $(CFLAGs) stack.cpp
