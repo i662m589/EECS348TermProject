@@ -91,7 +91,7 @@ vector<string> parse(string s) {
             }
             
             // if the stack is empty then just add the parsed op to the stack.
-            if (st.empty()) {
+            if (st.IsEmpty()) {
                 st.Add(curr_op);
                 continue; // This continue is here so that we dont add operators twice.
             }

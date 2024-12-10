@@ -29,24 +29,26 @@ int main() {
 			break;
 		}
 
-		try {
+		if (validateExpression(input) == true) {
+				try {
 			
-			// parse user's expression to postfix notation
-			vector<string> postfix = parse(input);
+					// parse user's expression to postfix notation
+					vector<string> postfix = parse(input);
 
-			// evaluate the postfix notation
-			double result = evaluator(postfix);
-			cout << "Result: " << result << endl;
-		}
+					// evaluate the postfix notation
+					double result = evaluator(postfix);
+					cout << "Result: " << result << endl;
+				}
 
-		// handle specific error messages from stack or evaluator
-		catch (const char* errorMsg) {
-			cerr << "Error: " << errorMsg << endl;
-		}
+				// handle specific error messages from stack or evaluator
+				catch (const char* errorMsg) {
+					cerr << "Error: " << errorMsg << endl;
+				}
 
-		// handle any other standard exceptions
-		catch (const exception& e) {
-			cerr << "Unexpected error: " << e.what() << endl;
+				// handle any other standard exceptions
+				catch (const exception& e) {
+					cerr << "Unexpected error: " << e.what() << endl;
+				}
 		}
 	}
 	return 0;
