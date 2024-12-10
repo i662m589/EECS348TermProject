@@ -41,7 +41,7 @@ vector<string> parse(string s) {
             // cause a memory error. It also checks if the next current character is a space 
             // because the format of the string should be one space between all operators and
             // operands.
-            while (i < (int)s.size() && s[i] != ' ') {
+            while (i < (int)s.size() && s[i] >= '0' && s[i] <= '9' || s[i] == '.') {
                 current_num += s[i];
                 i++;
             }
@@ -67,7 +67,7 @@ vector<string> parse(string s) {
             // that is directly connect to the number, that is no space between them.
             if ((c == '+' || c == '-') && s[i + 1] >= '0' && s[i + 1] <= '9') {
                 string current_num = string();
-                while (i < (int)s.size() && s[i] != ' ') {
+                while (i < (int)s.size() && s[i] >= '0' && s[i] <= '9' || s[i] == '.') {
                     current_num += s[i];
                     i++;
                 }
@@ -112,7 +112,7 @@ vector<string> parse(string s) {
                 // Again since by the time this function has recived the string it has been lexed to check for validity,
                 // So here it is safe to assume the parentheses match.
                 current_num += sign;
-                while (i < s.size() && s[i] != ')') {
+                while (i < s.size() && s[i] >= '0' && s[i] <= '9' || s[i] == '.') {
                     current_num += s[i];
                     i++;
                 }
