@@ -79,8 +79,9 @@ double evaluator(vector<string> &vect) {
             //If the index of the list is a numeric value, it is added to stack
         }
         else {
-            double num1 = stack.Pop();
+            // The order  of these is reversed; don't question it.
             double num2 = stack.Pop();
+            double num1 = stack.Pop();
             //If the index of the list is any other operator, the top two value in the stack are popped and stored.
             if (vect[i] == "+") {
                 cout << num1 << " + " << num2 << endl;
@@ -109,16 +110,12 @@ double evaluator(vector<string> &vect) {
                 }
             }
             else if (vect[i] == "**") {
-                double num1 = stack.Pop();
-                double num2 = stack.Pop();
                 stack.Add(pow(num1, num2));
                 cout << num1 << " ^ " << num2 << endl;
                 //If the index of the list is the exponentiation operator, the program then muliplies the first value by itself by a power of the second value and adds that to the stack.
             }
             else if (vect[i] == "%") {
                 cout << num1 << " % " << num2 << endl;
-                double num1 = stack.Pop();
-                double num2 = stack.Pop();
                 stack.Add(fmod(num1, num2));
                 //If the index of the list is the modulus operator, the first value is modulus'd by the second value and then added to the stack.
             }
