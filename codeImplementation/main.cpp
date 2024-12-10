@@ -4,7 +4,7 @@
 #include <vector>
 #include <stdexcept>
 #include "parser.cpp"
-#include "evaluator.cpp"
+#include "evaluator.h"
 #include "lexer.cpp"
 #include "stack.cpp"
 

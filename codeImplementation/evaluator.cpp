@@ -5,6 +5,7 @@
 #include "stack.cpp"
 #include <vector>
 #include <cmath>
+
 //These are the dependencies that will be utilized throughout the remainder of the evaluator
 using namespace std;
 //This namespace removes the need to use the std:: namespace
