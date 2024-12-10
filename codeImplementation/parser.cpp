@@ -73,6 +73,53 @@ vector<string> parse(string s) {
                 }
                 result.push_back(current_num);
             }
+            // Since the unary can be on the outside of a parentheses like , +( 4 ), we have to handle that case.
+            // This is done by determining the sign, since there could be mulitpule signs in a nested parentheses
+            // situation. This parse the number and then put that value in out postfix expression.
+            else if ((c == '+' || c == '-') && s[i + 1] >= '0' && s[i + 1] <= '9') {
+                
+                // Since we are looking for an operand we will need a string to hold its value.
+                // We also need to determine the sign so we start by getting its current sign and iterate
+                // so the loop doesnt check the same char twice.
+                string current_num = string();
+                char sign = c;
+                i++;
+                
+                // Then we need to loop through all possible nested parentheses and we can do this by basically just looping till we hit
+                // the number itself. This also helps handle the situation where there is an unary connected to the number itself.
+                while (i < s.size() && !(s[i] >= '0' && s[i] <= '9')) {
+                    
+                    // This catches the case that our current sign is negative and we ran into another
+                    // negative so we need to flip the sign and keep going.
+                    if (s[i] == '-' && sign == '-') {
+                        sign == '+'
+                        i++;
+                    }
+                    // This covers the case that we ran into a negative and currently our sign is positive, in this
+                    // case we need to flip our sign and continue/
+                    else if (s[i] == '-' && sign == '+') {
+                        sign == '-'
+                    }
+                    // Since there are two other possible combonations of the current operator and sign 
+                    // this else catches thoes cases. They can be caught and simply iterated past because
+                    // they do not change the sign.
+                    else {
+                        i++;
+                    }
+                }
+                // Once we have determined the sign of the value we need to acutally determine the value itself.
+                // This is done by looping till there is no longer any value. That is the first ')' is found.
+                // Again since by the time this function has recived the string it has been lexed to check for validity,
+                // So here it is safe to assume the parentheses match.
+                current_num += sign;
+                while (i < s.size() && s[i] != ')') {
+                    current_num += s[i];
+                    i++;
+                }
+                // Then of course we need to add this new value to the postfix expression.
+                result.push_back(current_num);
+                continue;
+            }
 
             // Initialize curr_op
             string curr_op;
