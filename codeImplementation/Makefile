@@ -23,3 +23,4 @@ stack.o: stack.cpp
 
 clean:
 	rm -f *.o
+	rm -f *.gch
