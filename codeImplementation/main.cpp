@@ -32,13 +32,16 @@ int main() {
 		try {
 			if (!processExpression(input)) {
                 // If expression is invalid, continue to next iteration
+				// calling lexer
 				continue;
 			
 			}
 			// parse user's expression to postfix notation
+			// calls parser
 			vector<string> postfix = parse(input);
 
 			// evaluate the postfix notation
+			// calls evaluator
 			double result = evaluator(postfix);
 			cout << "Result: " << result << endl;
 		}
