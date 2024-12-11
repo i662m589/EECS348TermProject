@@ -23,7 +23,19 @@ bool validateExpression(const string& expression) {
         } else if (isdigit(ch) || ch == '.') {
             expectOperand = false; //Number encountered
             lastWasOperator = false;
+        } // Inside the loop in validateExpression
+        else if (ch == '(') {
+            if (!lastWasOperator && !expectOperand) {
+                return false; // Invalid if there's no operator before '(' or if it's a bare number
+            }   
+            parenthesesBalance++;
+            expectOperand = true; // Operand expected after '('
         } else if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%') {
+            if (isdigit(expression[i+1]) || expression[i+1] == '(') {
+                cout << "get in there" << endl;
+                expectOperand = false; //Number encountered
+                lastWasOperator = false;
+            }
             if (ch == '*' && i + 1 < expression.length() && expression[i + 1] == '*') {
                 if (lastWasOperator || expectOperand) {
                     return false; //Invalid operator placement

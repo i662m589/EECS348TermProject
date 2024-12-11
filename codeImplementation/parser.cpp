@@ -68,11 +68,15 @@ vector<string> parse(string s) {
             // that is directly connect to the number, that is no space between them.
             if ((c == '+' || c == '-') && s[i + 1] >= '0' && s[i + 1] <= '9') {
                 string current_num = string();
+                current_num += c;
+                i++;
                 while (i < (int)s.size() && ((s[i] >= '0' && s[i] <= '9') || s[i] == '.')) {
                     current_num += s[i];
                     i++;
                 }
+                i--;
                 result.push_back(current_num);
+                continue;
             }
             // Since the unary can be on the outside of a parentheses like , +( 4 ), we have to handle that case.
             // This is done by determining the sign, since there could be mulitpule signs in a nested parentheses
@@ -88,7 +92,7 @@ vector<string> parse(string s) {
                 
                 // Then we need to loop through all possible nested parentheses and we can do this by basically just looping till we hit
                 // the number itself. This also helps handle the situation where there is an unary connected to the number itself.
-                while (i < (int)s.size() && !(s[i] >= '0' && s[i] <= '9')) {
+                while (i < (int)s.size() && (!(s[i] >= '0' && s[i] <= '9') || s[i] == ' ')) {
                     
                     // This catches the case that our current sign is negative and we ran into another
                     // negative so we need to flip the sign and keep going.
@@ -100,11 +104,21 @@ vector<string> parse(string s) {
                     // case we need to flip our sign and continue/
                     else if (s[i] == '-' && sign == '+') {
                         sign = '-';
+                        i++;
+                    }
+                    else if (s[i] == '(') {
+                        // This pushes a string version because everything is beind handled as string literals.
+                        // We are treating everything as string literals because of the operator "**" being longer
+                        // than a char.
+                        cout << "really in here" << endl;
+                        st.Add("(");
+                        i++;
                     }
                     // Since there are two other possible combonations of the current operator and sign 
                     // this else catches thoes cases. They can be caught and simply iterated past because
                     // they do not change the sign.
                     else {
+                        
                         i++;
                     }
                 }
@@ -113,12 +127,14 @@ vector<string> parse(string s) {
                 // Again since by the time this function has recived the string it has been lexed to check for validity,
                 // So here it is safe to assume the parentheses match.
                 current_num += sign;
+                cout << s[i] << endl;
                 while (i < (int)s.size() && ((s[i] >= '0' && s[i] <= '9') || s[i] == '.')) {
                     current_num += s[i];
                     i++;
                 }
                 // Then of course we need to add this new value to the postfix expression.
                 result.push_back(current_num);
+                i--;
                 continue;
             }
 
