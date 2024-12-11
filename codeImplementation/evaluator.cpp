@@ -65,6 +65,12 @@ double evaluator(vector<string> &vect) {
             }
         }
     }
+
+    // Stack size should be 1 at this point
+    if (stack.Size() != 1) {
+        throw "Cannot Reduce Expression To A Single Value!";
+    }
+
     return stack.Pop();
 //After the for-loop is finished, the last value in the stack is returned to main.
 }
