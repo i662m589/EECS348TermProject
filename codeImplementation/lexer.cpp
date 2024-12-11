@@ -32,7 +32,6 @@ bool validateExpression(const string& expression) {
             expectOperand = true; // Operand expected after '('
         } else if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%') {
             if (isdigit(expression[i+1]) || expression[i+1] == '(') {
-                cout << "get in there" << endl;
                 expectOperand = false; //Number encountered
                 lastWasOperator = false;
             }

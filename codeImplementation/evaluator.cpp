@@ -13,7 +13,6 @@ double evaluator(vector<string> &vect) {
         Stack<double> stack;
 //The stack object will be used to evaluate the expression in postorder
     for (int i = 0; i < (int)vect.size(); i++) {
-        cout << vect[i] << endl;
 //This for-loop goes through each value of the vector/list from parser
         if (extractNumber(vect[i]) != -999999.99) {
             if (extractNumber(vect[i]) == +0 || extractNumber(vect[i]) == -0) {

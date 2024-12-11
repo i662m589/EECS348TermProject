@@ -110,7 +110,6 @@ vector<string> parse(string s) {
                         // This pushes a string version because everything is beind handled as string literals.
                         // We are treating everything as string literals because of the operator "**" being longer
                         // than a char.
-                        cout << "really in here" << endl;
                         st.Add("(");
                         i++;
                     }
@@ -127,7 +126,6 @@ vector<string> parse(string s) {
                 // Again since by the time this function has recived the string it has been lexed to check for validity,
                 // So here it is safe to assume the parentheses match.
                 current_num += sign;
-                cout << s[i] << endl;
                 while (i < (int)s.size() && ((s[i] >= '0' && s[i] <= '9') || s[i] == '.')) {
                     current_num += s[i];
                     i++;
