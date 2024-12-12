@@ -26,7 +26,7 @@ vector<string> parse(string s) {
     for (int i = 0; i < (int)s.length(); i++) {
         char c = s[i];
         
-        // If the scanned character is an operand, add it to the string.
+        // If the scanned character is a digit, find the whole number and add it to the result.
         if (c >= '0' && c <= '9'){
             string current_num = string(); // Creates an empty string that will hold the new number till we add it to the vector
             
@@ -144,7 +144,7 @@ vector<string> parse(string s) {
             // "*" and "**", we need to handle that issue.
             // This if handles that issue by checking the next char in the sting, this resolves the issue because if the
             // next char is '*' we know that out current operator is "**", otherwise we know its the char we just parsed.
-            if (s[i + 1] == '*') {
+            if (s[i] == '*' && s[i + 1] == '*') {
                 curr_op = "**";
                 i++; // Here we need to iterate i so on the next loop it doesnt grab the second '*'.
             }else {
