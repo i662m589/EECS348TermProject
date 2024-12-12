@@ -15,7 +15,6 @@ string Format(const string& input) {
 
 	// For each plus or minus sign, check that there is a number preceding it; if not, add a zero.
 	bool lookingForNum = false;
-	int opIndex;
 	for (int i = copy.size() - 1; i >= 0; i--) {
 		char c = copy[i];
 		if (c >= '0' && c <= '9') {
@@ -25,7 +24,6 @@ string Format(const string& input) {
 			lookingForNum = false;
 		} else if (c == '+' || c == '-') {
 			lookingForNum = true;
-			opIndex = i;
 		}
 	}
 	if (lookingForNum) {

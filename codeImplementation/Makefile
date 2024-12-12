@@ -4,7 +4,7 @@ CFLAGs = -c -Wall -g
 
 all: main.o evaluator.o stack.o lexer.o parser.o strToNum.o formatter.o
 	$(CC) -o $(APPLICATION_NAME) main.o stack.o evaluator.o lexer.o parser.o strToNum.o formatter.o -g
-	#make clean
+	make clean
 
 evaluator.o: evaluator.cpp evaluator.h
 	$(CC) $(CFLAGs) evaluator.cpp evaluator.h
