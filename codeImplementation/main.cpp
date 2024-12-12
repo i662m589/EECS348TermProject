@@ -6,6 +6,7 @@
 #include "lexer.h"
 #include "parser.h"
 #include "evaluator.h"
+#include "formatter.h"
 
 using namespace std;
 
@@ -30,15 +31,21 @@ int main() {
 		}
 
 		try {
+
+			input = Format(input);
+
 			if (!processExpression(input)) {
                 // If expression is invalid, continue to next iteration
+				// calling lexer
 				continue;
 			
 			}
 			// parse user's expression to postfix notation
+			// calls parser
 			vector<string> postfix = parse(input);
 
 			// evaluate the postfix notation
+			// calls evaluator
 			double result = evaluator(postfix);
 			cout << "Result: " << result << endl;
 		}
